@@ -1,30 +1,47 @@
 package com.step.tourist_agency.controller;
 
 import com.step.tourist_agency.dto.TravelDto;
-import org.springframework.http.ResponseEntity;
+import com.step.tourist_agency.service.TravelService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public interface TravelController {
+@RestController
+@RequestMapping("/api")
+public class TravelController {
+
+    private final TravelService travelService;
+
+    public TravelController(TravelService travelService) {
+        this.travelService = travelService;
+    }
 
     @GetMapping("/one")
-    ResponseEntity<TravelDto> findOne(@RequestParam("id") Long id);
+    public TravelDto findOne(@RequestParam("id") Long id){
+        return travelService.findOne(id);
+    }
 
     @GetMapping("/all")
-    ResponseEntity<List<TravelDto>> findAllByOrder(@RequestParam("orderId") Long orderId);
+    public List<TravelDto> findAllByOrder(@RequestParam("orderId") Long orderId){
+        return travelService.findAllByOrder(orderId);
+    }
 
     @GetMapping("/all")
-    public ResponseEntity<List<TravelDto>> findAll(
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "type") String sortBy);
+    public List<TravelDto> findAll(@RequestParam(defaultValue = "0") Integer pageNo,
+                                   @RequestParam(defaultValue = "10") Integer pageSize,
+                                   @RequestParam(defaultValue = "type") String sortBy){
+        return travelService.findAll(pageNo, pageSize, sortBy);
+    }
 
 
     @PostMapping("/save")
-    ResponseEntity<TravelDto> save(@RequestBody TravelDto itemDto);
+    public TravelDto save(@RequestBody TravelDto travelDto){
+        return travelService.save(travelDto);
+    }
 
     @DeleteMapping("/remove")
-    void remove(@RequestParam("id") Long id);
+    void remove(@RequestParam("id") Long id){
+        travelService.remove(id);
+    }
 
 }

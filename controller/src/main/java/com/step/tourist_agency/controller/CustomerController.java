@@ -1,23 +1,39 @@
 package com.step.tourist_agency.controller;
 
 import com.step.tourist_agency.dto.CustomerDto;
-import org.springframework.http.ResponseEntity;
+import com.step.tourist_agency.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public interface CustomerController {
+@RestController
+@RequestMapping("/api")
+public class CustomerController {
+
+    private final CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("/one")
-    ResponseEntity<CustomerDto> findOne(@RequestParam("id") Long id);
+    public CustomerDto findOne(@RequestParam("id") Long id){
+        return customerService.findOne(id);
+    }
 
     @GetMapping("/all")
-    ResponseEntity<List<CustomerDto>> findAll();
+    public List<CustomerDto> findAll(){
+        return customerService.findAll();
+    }
 
     @PostMapping("/save")
-    ResponseEntity<CustomerDto> save(@RequestBody CustomerDto userDto);
+    public CustomerDto save(@RequestBody CustomerDto customerDto){
+        return customerService.save(customerDto);
+    }
 
     @DeleteMapping("/remove")
-    void remove(@RequestParam("id") Long id);
+    void remove(@RequestParam("id") Long id){
+        customerService.remove(id);
+    }
 
 }

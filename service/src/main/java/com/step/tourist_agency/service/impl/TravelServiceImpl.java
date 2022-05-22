@@ -87,4 +87,5 @@ public class TravelServiceImpl implements TravelService {
                 Collections.emptyList() :
                 list.stream().map(travelConverter::convert).collect(Collectors.toList());
     }
+
 }
