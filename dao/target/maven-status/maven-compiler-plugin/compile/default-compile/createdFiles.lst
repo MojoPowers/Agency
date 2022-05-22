@@ -1,0 +1,10 @@
+com\step\tourist_agency\entity\Travel.class
+com\step\tourist_agency\repository\CustomerRepository.class
+com\step\tourist_agency\repository\TravelRepository.class
+com\step\tourist_agency\entity\Customer.class
+com\step\tourist_agency\entity\parent\BaseEntity.class
+com\step\tourist_agency\entity\parent\LogEntity.class
+com\step\tourist_agency\repository\OrderRepository.class
+com\step\tourist_agency\entity\Order.class
+com\step\tourist_agency\entity\parent\LogNameEntity.class
+com\step\tourist_agency\entity\parent\NameEntity.class
